@@ -1,0 +1,314 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #14191F;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+
+}
+
+@property --deg {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+
+@keyframes autoRotate {
+    to {
+        --deg: 360deg;
+    }
+
+}
+
+@keyframes floatingCard {
+    0%, 100% {
+        transform: perspective(5000px) translateY(-25px);
+    }
+    50% {
+        transform: perspective(5000px) translateY(25px);
+    }
+}
+
+.blue {
+    position: absolute;
+    bottom: -10rem;
+    left: 50%;
+    margin-left: -50px;
+    transform: translateX(-50%);
+    border-radius: 100%;
+    min-width: 400px;
+    height: 40vh;
+    background: #10e5de;
+    filter: blur(120px);
+    z-index: -10;
+
+}
+
+.orange {
+    position: absolute;
+    margin-left: 100%;
+    border-radius: 100%;
+    width: 150px;
+    height: 40vh;
+    background: #fb7d0e;
+    filter: blur(1px);
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    
+
+}
+
+.img-container .grain {
+    max-width: 100%;
+    height: auto;
+    opacity: 100%;
+    mix-blend-mode: color-dodge;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.card-container {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    width: 300px;
+    height: 430px;
+    background-color: #051716;
+    border-radius: 24px;
+    transform-style: preserve-3d;
+    transform: perspective(5000px);
+    animation: floatingCard 4s ease-in-out infinite;
+    z-index: 1;
+
+}
+.card-container:active{
+    animation-play-state: paused;
+    
+}
+
+.inner-section {
+    width: 275px;
+    height: 400px;
+    margin-top: 15px;
+    border-radius: 14px;
+    background-color: #526f93;
+    overflow: hidden;
+}
+
+.inner-section img {
+    margin-top: -7px;
+    transform: translateX(-12%);
+    height: 100%;
+    pointer-events: none;
+
+}
+
+.inner-overlay {
+    position: absolute;
+    width: 275px;
+    height: 400px;
+    margin-top: 15px;
+    border-radius: 14px;
+    background: linear-gradient(#00000000 60%, #14191F 95%);
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 20px inset #12171c;
+}
+
+.inner-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -210%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(193, 255, 253, 0.113),
+        transparent
+    );
+    filter: blur(6px);
+    transform: skewX(45deg);
+    transition: left 0.6s ease-in-out;
+    z-index: 2;
+}
+
+.card-container:hover .inner-overlay::before {
+    left: 200%;
+}
+.card-container::before,
+.card-container:after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+}
+
+.card-container::after {
+    inset: -0.25rem -0.18rem;
+    background: conic-gradient(from var(--deg), #0000, #0000, #10E5DE, #0000, #0000);
+    transform: translateZ(-50px);
+    animation: autoRotate 3s linear infinite;
+
+}
+
+.name {
+    position: absolute;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: whitesmoke;
+    margin-top: 250px;
+    letter-spacing: 0.8px;
+    padding-left: 15px;
+    z-index: 1;
+    
+}
+
+h3 {
+    position: absolute;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: whitesmoke;
+}
+
+h3:nth-child(2) {
+    padding-left: 105px;
+    color: #10E5DE;
+}
+
+p {
+    position: absolute;
+    padding-left: 15px;
+    max-width: 200px;
+    margin-top: 300px;
+    text-wrap: wrap;
+    color: #798484;
+    font-family: "Fira Code", monospace;
+    font-optical-sizing: auto;
+    letter-spacing: -0.48px;
+    font-size: 12.5px;
+    font-weight: 600;
+    z-index: 2;
+
+
+}
+
+.in-foot {
+    display: flex;
+    position: absolute;
+    justify-self: center;
+    flex-direction: row;
+    bottom: 16px;
+    width: 90%;
+    height: 25px;
+    z-index: 1;
+}
+
+
+
+.in-foot h4 {
+    font-family: "Fira Code", Helvetica;
+    font-size: 12px;
+    font-weight: 400;
+    height: 13px;
+
+    letter-spacing: -0.48px;
+    margin-top: 4px;
+    color: white;
+}
+
+.stripes {
+    align-self: center;
+    max-width: 1;
+    height: auto;
+    opacity: 100%;
+    z-index: -2;
+    opacity: 8%;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+    padding: 5;    
+}
+.left img{
+    place-self: center;
+    height: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #10E5DE;
+    font-family: "Poppins", sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    font-style: normal;
+    z-index: 1;
+}
+
+.right-btn {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-self: center;
+    place-items: center;
+    gap: 4.5px;
+    right: 0px;
+    background-color: #050D17;
+    border-radius: 30px;
+    padding: 5px 10px;
+    box-shadow: 0 0 10px #1dfaf2c4;
+    transform-style: preserve-3d;
+}
+.right-btn::before,
+.right-btn::after{
+    content: "";
+    position: absolute;
+}
+.right-btn::before{
+    inset: -0.1rem -0.1rem;
+
+    border-radius: inherit;
+    background: conic-gradient(from var(--deg), #0000, #0000, #10E5DE, #0000, #0000);
+    transform: translateZ(-50px);
+    animation: autoRotate 3s linear infinite;
+
+}
+img{
+    pointer-events: none;
+}
+.footer{
+    z-index: 1;
+    display: flex;
+    width: 1;
+    position: absolute;
+    bottom: 0;
+}
+@media (max-width: 600px) {
+    .footer img{
+        margin: 0;
+        padding: 0;
+    }
+    .footer{
+        bottom: 0px;
+
+    }
+    
+    
+}
